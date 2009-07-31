@@ -61,7 +61,7 @@ class Grind
     }
   end
 
-  def self.em
+  def self.run_tests
     self.iterations.times do
       threads = Array.new(self.number_of_threads)
       @@tests = Array.new

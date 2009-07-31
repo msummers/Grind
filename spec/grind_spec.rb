@@ -1,18 +1,19 @@
 require 'lib/grind'
+require 'test_class.rb'
 
 describe Grind do
-  describe "em" do
+  describe "run_tests" do
     before(:each) do
       @testClass = TestClass.new
     end
     it 'should do not bork' do
-      TestClass.em
+      TestClass.run_tests
     end
     it 'should have spawned the right number of objects' do
       TestClass.tests.size.should == (TestClass.number_of_threads * TestClass.iterations)
     end
     it 'should get a result for every test' do
-      0..((TestClass.number_of_threads * TestClass.iterations)-1) |i|
+      (0..((TestClass.number_of_threads * TestClass.iterations)-1)).each do |i|
         TestClass.tests[i-1].should_not == nil
       end
     end
